@@ -1,0 +1,9 @@
+push 34
+push 35
+plus
+dump
+push 500
+push 80
+minus
+dump
+exit
