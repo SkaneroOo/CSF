@@ -6,6 +6,21 @@
 from sys import argv
 import re
 
+if "--help" in argv or "-h" in argv or len(argv) == 1:
+    print("CSF Engine V 0.0.1 by SkaneroOo")
+
+    print("\nUsage:")
+    print("\t{} [mode] ... [option | file]".format(argv[0])) # .format, because f-string doesn't allow backslashes
+
+    print("\nAvailable modes:")
+    print("\tinter\tInterpretation mode")
+
+    print("\nAvailable options:")
+    print("\t--debug\t-d\tDebug mode for interpretation")
+    print("\t--help\t-h\tDisplay this message")
+    print()
+    exit()
+
 argv.pop(0)
 
 iota_counter = 0
@@ -54,7 +69,7 @@ def tokenize(line: str, i):
         assert len(op) == 1, f"Too many arguments for \"{op[0]}\""
     return op
 
-def simulate(program, debug=False):
+def interprete(program, debug=False):
     stack = []
         
     for op in program:
@@ -91,7 +106,7 @@ def simulate(program, debug=False):
             exit()
 
         else:
-            assert False, "UNIMPLEMENTED"
+            assert False, "Not implemented"
     
 
 def compile():
@@ -110,9 +125,9 @@ def readfile(path):
 
 
 
-if "simulate" in argv:
-    argv.remove("simulate")
-    mode = simulate
+if "inter" in argv:
+    argv.remove("inter")
+    mode = interprete
 
 
 src = readfile(argv[0])
